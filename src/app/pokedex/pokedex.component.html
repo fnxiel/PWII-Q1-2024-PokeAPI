@@ -1,0 +1,18 @@
+<label for="cantidad">Cantidad:</label>
+<input id="cantidad" type="number" [(ngModel)]="cantidad" />
+<!-- <input type="checkbox" name="cargando" id="cargando" [(ngModel)]="cargando"> -->
+<button (click)="cargarPokemons()">Buscar</button>
+<div *ngIf="cargando">
+    <p>Cargando información</p>
+</div>
+<div *ngIf="pokemons && !cargando">
+    <div *ngIf="pokemons.results.length > 0">
+        <app-pokemon *ngFor="let pokemon of pokemons?.results" [pokemonResult]="pokemon"></app-pokemon>
+    </div>
+    <div *ngIf="pokemons.results.length == 0">
+        <p>No hay resultados para mostrar</p>
+    </div>
+</div>
+<div *ngIf="!pokemons">
+    <p>No se ha logrado obtener la información</p>
+</div>
